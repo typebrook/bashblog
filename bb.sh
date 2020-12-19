@@ -586,6 +586,7 @@ EOF
 The rest of the text file is a **Markdown** blog post. The process will continue
 as soon as you exit your editor.
 
+Date: $(date --iso-8601=date)
 $template_tags_line_header keep-this-tag-format, tags-are-optional, beware-with-underscores-in-markdown, example
 EOF
     fi
@@ -598,7 +599,8 @@ EOF
         $EDITOR "$TMPFILE"
         if [[ $fmt == md ]]; then
             html_from_md=$(markdown "$TMPFILE")
-            parse_file "$html_from_md"
+            date=$(sed -En "/^Date:/ s/Date:\s(.+)/\1/p" $TMPFILE | tail -1)
+            parse_file "$html_from_md" "$date"
             rm "$html_from_md"
         else
             parse_file "$TMPFILE" # this command sets $filename as the html processed file
