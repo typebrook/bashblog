@@ -553,7 +553,7 @@ write_entry() {
     [[ $2 == -html ]] && fmt=html && f=$3
 
     if [[ -n $f ]]; then
-        TMPFILE=$f
+        TMPFILE=$(mktemp) && cat $f >$TMPFILE
         if [[ ! -f $TMPFILE ]]; then
             echo "The file doesn't exist"
             delete_includes
