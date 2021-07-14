@@ -438,11 +438,6 @@ create_html_page() {
         [[ $filename = $index_file* ]] && [[ -n $body_begin_file_index ]] && cat "$body_begin_file_index"
         # body divs
         echo '<div id="divbodyholder">'
-        echo '<div class="headerholder"><div class="header">'
-        # blog title
-        echo '<div id="title">'
-        cat .title.html
-        echo '</div></div></div>' # title, header, headerholder
         echo '<div id="divbody"><div class="content">'
 
         file_url=${filename#./}
@@ -932,11 +927,6 @@ make_rss() {
 
 # generate headers, footers, etc
 create_includes() {
-    {
-        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title</a></h1>" 
-        echo "<div id=\"description\">$global_description</div>"
-    } > ".title.html"
-
     if [[ -f $header_file ]]; then cp "$header_file" .header.html
     else {
         echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
@@ -964,7 +954,7 @@ create_includes() {
 
 # Delete the temporarily generated include files
 delete_includes() {
-    rm ".title.html" ".footer.html" ".header.html"
+    rm ".footer.html" ".header.html"
 }
 
 # Create the css file from scratch

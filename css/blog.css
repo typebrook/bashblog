@@ -1,13 +1,15 @@
-.title {
-  /*height: 120px;*/
-  text-align: center;
-  margin-bottom: 50px;
+.site-heading {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  font-size: 46px;
 }
 
-.nomargin {
-  margin:0;
-  font-size: 60px;
-  color: #ebebeb;
+.site-murmur {
+  margin-left: 20px;
+  word-spacing: 5px;
+  font-size: 20px;
+  font-style: Italic;
+  color: #909090;
 }
 
 #blogcontent {
@@ -15,7 +17,6 @@
 }
 
 a.ablack {
-  color:#ebebeb;
   text-decoration: none;
 }
 
